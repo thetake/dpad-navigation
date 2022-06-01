@@ -1,7 +1,7 @@
 {
-  "name": "@gauntface/dpad-nav",
+  "name": "thetake-dpad-nav",
   "publishConfig": {
-    "access": "public"
+    "registry": "https://nexus.thetake-api.com/repository/thetake-npm-internal/"
   },
   "version": "3.0.1",
   "description": "A JS / TS library to make it easy to add d-pad navigation to a web app.",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gauntface/dpad-navigation.git"
+    "url": "git+https://github.com/thetake/dpad-navigation.git"
   },
   "keywords": [
     "gauntface",
@@ -27,9 +27,9 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/gauntface/dpad-navigation/issues"
+    "url": "https://github.com/thetake/dpad-navigation/issues"
   },
-  "homepage": "https://github.com/gauntface/dpad-navigation#readme",
+  "homepage": "https://github.com/thetake/dpad-navigation#readme",
   "devDependencies": {
     "@hopin/wbt-clean": "0.0.126",
     "@hopin/wbt-ts-browser": "0.0.126",
