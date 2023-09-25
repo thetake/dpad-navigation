@@ -106,7 +106,8 @@ export class FocusableItem {
       center: {
         x: clientRect.left + (clientRect.width / 2),
         y: clientRect.top + (clientRect.height / 2)
-      }
+      },
+      tabIndex: parseInt(this.element.getAttribute('tabindex'), 10) || -1
     };
   }
 
@@ -130,4 +131,5 @@ export interface Metrics {
   top: number
   bottom: number
   center: Point
+  tabIndex: number
 }

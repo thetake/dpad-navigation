@@ -149,9 +149,16 @@ export class DpadController {
 
     const itemCount = this.focusableItems.length;
 
+    let maxTopElementTI;
     let minTopElementDist;
+
+    let minBottomElementTI;
     let minBottomElementDist;
+
+    let maxLeftElementTI;
     let minLeftElementDist;
+
+    let minRightElementTI;
     let minRightElementDist;
 
     for(var i = 0; i < itemCount; i++) {
@@ -168,26 +175,46 @@ export class DpadController {
       const distanceLeft = this.getLeftDistance(metrics, newItemMetrics);
       const distanceRight = this.getRightDistance(metrics, newItemMetrics);
 
-      if(distanceTop !== null && (typeof minTopElementDist === 'undefined' || minTopElementDist > distanceTop)) {
+      if(distanceTop !== null 
+        && (typeof minTopElementDist === 'undefined' || minTopElementDist > distanceTop)
+        && newItemMetrics.tabIndex <= metrics.tabIndex
+        && (typeof maxTopElementTI === 'undefined' || newItemMetrics.tabIndex > maxTopElementTI)
+      ) {
           minTopElementDist = distanceTop;
+          maxTopElementTI = newItemMetrics.tabIndex;
 
           fi.setTopFocusItemIndex(i);
       }
 
-      if(distanceBottom !== null && (typeof minBottomElementDist === 'undefined' || minBottomElementDist > distanceBottom)) {
+      if(distanceBottom !== null 
+        && (typeof minBottomElementDist === 'undefined' || minBottomElementDist > distanceBottom)
+        && newItemMetrics.tabIndex >= metrics.tabIndex
+        && (typeof minBottomElementTI === 'undefined' || newItemMetrics.tabIndex < minBottomElementTI)
+      ) {
           minBottomElementDist = distanceBottom;
+          minBottomElementTI = newItemMetrics.tabIndex;
 
           fi.setBottomFocusItemIndex(i);
       }
 
-      if(distanceLeft !== null && (typeof minLeftElementDist === 'undefined' || minLeftElementDist > distanceLeft)) {
+      if(distanceLeft !== null 
+        && (typeof minLeftElementDist === 'undefined' || minLeftElementDist > distanceLeft)
+        && newItemMetrics.tabIndex <= metrics.tabIndex
+        && (typeof maxLeftElementTI === 'undefined' || newItemMetrics.tabIndex > maxLeftElementTI)
+      ) {
           minLeftElementDist = distanceLeft;
+          maxLeftElementTI = newItemMetrics.tabIndex;
 
           fi.setLeftFocusItemIndex(i);
       }
 
-      if(distanceRight !== null && (typeof minRightElementDist === 'undefined' || minRightElementDist > distanceRight)) {
+      if(distanceRight !== null 
+        && (typeof minRightElementDist === 'undefined' || minRightElementDist > distanceRight)
+        && newItemMetrics.tabIndex >= metrics.tabIndex
+        && (typeof minRightElementTI === 'undefined' || newItemMetrics.tabIndex < minRightElementTI)        
+      ) {
           minRightElementDist = distanceRight;
+          minRightElementTI = newItemMetrics.tabIndex;
 
           fi.setRightFocusItemIndex(i);
       }
